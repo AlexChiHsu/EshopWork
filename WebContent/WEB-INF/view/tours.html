@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Tours page</title>
+<script src="js/jquery-3.4.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>List of available tours</h1>
+		</div>
+
+		<div class="row">
+			<table class="table table-hover" th:if="${!tours.empty}">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Code</th>
+						<th scope="col">Continent</th>
+						<th scope="col">Date</th>
+						<th scope="col">Duration</th>
+						<th scope="col">All Inclusive</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tour : ${tours}">
+						<td th:text="${tourStat.count}"></td>
+						<td th:text="${tour.name}"></td>
+						<td th:text="${tour.code}"></td>
+						<td th:text="${tour.continent}"></td>
+						<td th:text="${tour.date}"></td>
+						<td th:text="${tour.duration}"></td>
+						<td th:text="${tour.allInclusive}"></td>
+						<td><a class="btn btn-primary" th:href="@{/editTour/} + ${tour.id}">Edit</a></td>
+						<td><a class="btn btn-danger" th:href="@{/deleteTour/} + ${tour.id}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row" th:if="${tours.empty}">
+			<h3>No tours in the offer</h3>
+		</div>
+
+		<div class="row">
+			<a th:href="@{/}" class="btn btn-warning">Back</a>
+		</div>
+	</div>
+</body>
+</html>

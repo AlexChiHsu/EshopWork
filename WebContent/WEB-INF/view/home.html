@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home page</title>
+<script src="js/jquery-3.4.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to E-shop</h1>
+		
+		<a th:href="@{/addTour}" class="btn btn-primary">Add a new tour</a>
+		<a th:href="@{/showOffer}" class="btn btn-primary">Show our offer</a>
+		<a th:href="@{/showCustomer}" class="btn btn-primary">客戶資料</a>
+		
+	</div>
+</body>
+</html>
