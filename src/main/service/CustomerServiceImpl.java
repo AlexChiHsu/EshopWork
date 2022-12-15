@@ -3,11 +3,12 @@ package main.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.dao.CustomerDAO;
-import main.dao.TourDAO;
 import main.model.Customer;
 
+@Service
 public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired

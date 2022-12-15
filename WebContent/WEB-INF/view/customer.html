@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Customer page</title>
+<title>Customer Detail page</title>
 <script src="js/jquery-3.4.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -11,29 +11,40 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row g-3 p-3">
+		<div class="row">
 			<h1>客戶資料 Customer detail</h1>
 		</div>
 
-		<form class="row g-3">
-			<div class="col-12 mt-4">
-				<label class="form-label">客戶編號 Customer Number</label>
-				<p>00001</p>
-			</div>
-			<div class="col-12 mt-4">
-				<label class="form-label">客戶名稱 Name</label> <input type="text"
-					class="form-control" placeholder="熊貓仔">
-			</div>
-			<div class="col-12 mt-4">
-				<label class="form-label">客戶地點 County</label> <input type="text"
-					class="form-control" placeholder="台北">
-			</div>
+		<div class="row">
+			<table class="table table-hover" th:if="${!customer.empty}">
+				<thead>
+					<tr>
+						<th scope="col">客戶編號 ID</th>
+						<th scope="col">客戶名稱 Name</th>
+						<th scope="col">客戶地點 County</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="customer : ${customers}">
+						<td th:text="${customer.id}"></td>
+						<td th:text="${customer.name}"></td>
+						<td th:text="${customer.county}"></td>
+						<td><a class="btn btn-primary" th:href="@{/editCustomer/} + ${tour.id}">Edit</a></td>
+						<td><a class="btn btn-danger" th:href="@{/deleteCustomer/} + ${tour.id}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-			<div class="d-grid gap-2 d-md-block mt-4 p-3">
-				<button type="submit" class="btn btn-outline-primary btn-lg" th:href="@{/saveOrUpdateCustomer/} + ${customer.id}">Save 儲存</button>
-				<button type="button" class="btn btn-outline-danger btn-lg" th:href="@{/deleteCustome/} + ${customer.id}">Delete 刪除</button>
-			</div>
-		</form>
+		<div class="row" th:if="${customers.empty}">
+			<h3>No Customers in the offer</h3>
+		</div>
+
+		<div class="row">
+			<a th:href="@{/}" class="btn btn-warning">Back</a>
+		</div>
 	</div>
 </body>
 </html>
