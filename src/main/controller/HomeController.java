@@ -26,5 +26,5 @@ public class HomeController {
 		model.addAttribute("shoppingCart", shoppingCart);
 		return "shoppingCart";
 	}
-	
+
 }

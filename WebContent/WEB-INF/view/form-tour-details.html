@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Customer page</title>
+<title>Form details page</title>
 <script src="js/jquery-3.4.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -12,36 +12,40 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-10"></div>
+			<div class="col-sm"></div>
 
-			<div class="col-sm-10">
-				<h1>新增客戶資料</h1>
+			<div class="col-sm-8">
+				<h1>Add/edit new details</h1>
 
-				<form action="#" class="col g-3" th:action="@{/processCustomerForm}"
-					th:object="${customer}" method="post">
+				<form action="#" th:action="@{/processFormTourDetails}"
+					th:object="${tour_Details}" method="post">
+
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}">
 					</div>
+
 					<div class="form-group">
-						<label>客戶名稱 Name</label> <input type="text" class="form-control"
-							th:field="*{name}">
+						<label>Country</label> <input type="text" class="form-control"
+							th:field="*{country}">
 					</div>
+					
 					<div class="form-group">
-						<label class="form-label">客戶地點 County</label> <input type="text"
-							class="form-control" th:field="*{county}">
+						<label>Description</label> 
+						<textarea rows="20" class="form-control" th:field="*{description}"></textarea>
 					</div>
 
 					<div class="form-row">
 						<div class="col">
-							<input class="btn btn-success" type="submit" value="儲存 Save">
+							<input class="btn btn-success" type="submit" value="Submit">
 						</div>
-						<div class="col ps-2">
-							<a th:href="@{/}" class="btn btn-warning float-right">取消
-								Cancel</a>
+						<div class="col">
+							<a th:href="@{/showOffer}" class="btn btn-warning float-right">Back</a>
 						</div>
 					</div>
 				</form>
 			</div>
+
+			<div class="col-sm"></div>
 		</div>
 	</div>
 </body>
