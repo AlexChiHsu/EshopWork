@@ -62,4 +62,10 @@ public class TourController {
 		}
 		return "redirect:/showOffer";
 	}
+	
+	@GetMapping("/addUserToTour/{id}/{userId}")
+	public String addUserToTour(@PathVariable long id, @PathVariable long userId) {
+		tourService.addUserToTour(id, userId);
+		return "redirct:/showOffer";
+	}
 }

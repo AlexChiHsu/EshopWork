@@ -5,11 +5,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Future;
@@ -29,6 +30,10 @@ public class Tour {
 		AFRICA, ASIA, EUROPE, NORTH_AMERICA, SOUTH_AMERICA;
 	}
 
+	public Tour() {
+		setTourDetails(new TourDetails());
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -57,12 +62,16 @@ public class Tour {
 	@JoinColumn(name = "tour_details_id")
 	private TourDetails tourDetails;
 	
-	@OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "tour", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 
 	public List<Comment> getComments() {
 		return comments;
 	}
+	
+	@ManyToMany
+	@JoinTable(name = "tour2user", joinColumns = @JoinColumn(name = "tour_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> users;
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
@@ -130,6 +139,14 @@ public class Tour {
 
 	public void setTourDetails(TourDetails tourDetails) {
 		this.tourDetails = tourDetails;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 }
