@@ -1,13 +1,16 @@
 package main.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
@@ -29,7 +32,7 @@ public class Tour {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotBlank(message = "{tour.name.notblank}")
 	@Size(min = 5, message = "{tour.name.size}")
 	private String name;
@@ -38,22 +41,33 @@ public class Tour {
 	private String code;
 
 	private Continent continent;
-	
+
 	@NotNull(message = "{tour.date.notnull}")
 	@Future(message = "{tour.date.future}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
-	
+
 	@Min(value = 7, message = "{tour.duration}")
 	@Max(value = 21, message = "{tour.duration}")
 	private int duration;
-	
+
 	private boolean allInclusive = false;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tour_details_id")
 	private TourDetails tourDetails;
 	
+	@OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Comment> comments;
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public String getName() {
 		return name;
 	}

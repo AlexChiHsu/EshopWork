@@ -7,11 +7,13 @@ import main.model.Tour;
 public interface TourDAO {
 
 	public List<Tour> getAll();
-	
+
 	public Tour getById(long id);
-	
+
 	public void saveOrUpdate(Tour tour);
-	
+
 	public void delete(long id);
 	
+	public Tour getByIdWithComments(long id);
+
 }

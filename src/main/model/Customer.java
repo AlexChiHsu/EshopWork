@@ -8,14 +8,14 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Customer {
-		
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Size(min = 1)
 	private String name;
-	
+
 	private String county;
 
 	public String getName() {
@@ -42,5 +42,4 @@ public class Customer {
 		this.county = county;
 	}
 
-	
 }

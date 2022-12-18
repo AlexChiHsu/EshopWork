@@ -12,8 +12,8 @@ import main.model.Customer;
 
 @Service
 @Transactional
-public class CustomerServiceImpl implements CustomerService{
-	
+public class CustomerServiceImpl implements CustomerService {
+
 	@Autowired
 	private CustomerDAO customerDAO;
 
@@ -30,13 +30,13 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public void saveOrUpdate(Customer customer) {
 		customerDAO.saveOrUpdate(customer);
-		
+
 	}
 
 	@Override
 	public void delete(long id) {
 		customerDAO.delete(id);
-		
+
 	}
 
 }

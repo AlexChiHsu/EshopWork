@@ -17,7 +17,7 @@ public class TourServiceImpl implements TourService {
 
 	@Autowired
 	private TourDAO tourDAO;
-	
+
 	@Override
 	public List<Tour> getAll() {
 		return tourDAO.getAll();
@@ -40,12 +40,15 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	public void addTourDetailsIfNotExists(Tour tour) {
-		if(tour.getTourDetails() == null) {
+		if (tour.getTourDetails() == null) {
 			tour.setTourDetails(new TourDetails());
 			saveOrUpdate(tour);
-		} 
+		}
 	}
-	
-	
+
+	@Override
+	public Tour getByIdWithComments(long id) {
+		return tourDAO.getByIdWithComments(id);
+	}
 
 }

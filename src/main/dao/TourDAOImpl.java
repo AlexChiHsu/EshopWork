@@ -14,7 +14,7 @@ public class TourDAOImpl implements TourDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public List<Tour> getAll() {
 		Session session = sessionFactory.getCurrentSession();
@@ -38,6 +38,12 @@ public class TourDAOImpl implements TourDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Tour tour = getById(id);
 		session.delete(tour);
+	}
+
+	@Override
+	public Tour getByIdWithComments(long id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from Tour t left join fetch t.comments where t.id = :id", Tour.class).setParameter("id", id).getSingleResult();
 	}
 
 	

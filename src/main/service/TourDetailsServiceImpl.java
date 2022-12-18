@@ -10,7 +10,7 @@ import main.model.TourDetails;
 
 @Service
 @Transactional
-public class TourDetailsServiceImpl implements TourDetailsService{
+public class TourDetailsServiceImpl implements TourDetailsService {
 
 	@Autowired
 	private TourDetailsDAO tourDetailsDAO;
@@ -29,7 +29,5 @@ public class TourDetailsServiceImpl implements TourDetailsService{
 	public void delete(long id) {
 		tourDetailsDAO.delete(id);
 	}
-	
-	
 
 }

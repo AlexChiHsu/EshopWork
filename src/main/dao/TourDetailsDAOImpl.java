@@ -9,10 +9,10 @@ import main.model.TourDetails;
 
 @Repository
 public class TourDetailsDAOImpl implements TourDetailsDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	@Override
 	public TourDetails getById(long id) {
 		Session session = sessionFactory.getCurrentSession();
@@ -31,6 +31,5 @@ public class TourDetailsDAOImpl implements TourDetailsDAO {
 		TourDetails tourDetails = getById(id);
 		session.delete(tourDetails);
 	}
-	
-	
+
 }
