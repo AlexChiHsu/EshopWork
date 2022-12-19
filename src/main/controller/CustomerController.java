@@ -34,7 +34,7 @@ public class CustomerController {
 			return "cusForm";
 		}
 		customerService.saveOrUpdate(customer);
-		return "redirect:showCustomerOffer";
+		return "redirect:/showCustomerOffer";
 	}
 
 	@GetMapping("/showCustomerOffer")
@@ -62,4 +62,6 @@ public class CustomerController {
 		}
 		return "redirect:/showCustomerOffer";
 	}
+	
+	
 }

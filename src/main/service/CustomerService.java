@@ -13,5 +13,7 @@ public interface CustomerService {
 	public void saveOrUpdate(Customer customer);
 
 	public void delete(long id);
+	
+	public Customer getByIdWithComments(long id);
 
 }
