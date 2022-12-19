@@ -24,11 +24,13 @@
 		</div>
 
 		<div class="p-3 m-0 d-flex justify-content-end">
-			<a th:href="@{/showShoppingCartOffer}" class="p-1">
-				購物車
-			</a>
+			<a th:href="@{/addTour}" class="btn btn-primary">Add a new tour</a>
+			<a th:href="@{/showOffer}" class="btn btn-primary">Show our offer</a>
+			<a th:href="@{/addComment}" class="btn btn-primary">Add comment</a>
+			<a th:href="@{/showShoppingCartOffer}" class="p-1">購物車</a>
 			<a th:href="@{/addCustomer}" class="p-1">新增客戶</a>
 			<a th:href="@{/showCustomerOffer}" class="p-1">客戶資料</a>
+			<a th:href="@{/addCustomerComment}" class="p-1">新增評論 Add customer comment</a>
 			<a th:href="@{/}" class="p-1">訂單查詢</a>
 			<a th:href="@{login}" class="p-1">登入/註冊</a>
 			<a th:href="@{logout}" class="p-1">登出</a>
@@ -55,8 +57,7 @@
 						<p class="card-text">Some quick example text to build on the card title and make up the bulk
 							of the
 							card's content.</p>
-						<a th:href="@{/addComment}" class="btn btn-primary">Add
-							comment</a>
+						<a th:href="@{/addComment}" class="btn btn-primary">Add comment</a>
 					</div>
 				</div>
 			</div>
@@ -80,7 +81,7 @@
 						<p class="card-text">Some quick example text to build on the card title and make up the bulk
 							of the
 							card's content.</p>
-							<a th:href="@{/addTour}" class="btn btn-primary">Add a new tour</a>
+						<a th:href="@{/addTour}" class="btn btn-primary">Add a new tour</a>
 					</div>
 				</div>
 			</div>
