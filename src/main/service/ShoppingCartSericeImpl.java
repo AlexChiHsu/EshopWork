@@ -18,8 +18,8 @@ public class ShoppingCartSericeImpl implements ShoppingCartService {
 	@Autowired
 	private ShoppingCartRepository shoppingCartRepository;
 	
-	@Autowired
-	private CustomerRepository customerRepository;
+//	@Autowired
+//	private CustomerRepository customerRepository;
 	
 	@Override
 	public List<ShoppingCart> getAll() {

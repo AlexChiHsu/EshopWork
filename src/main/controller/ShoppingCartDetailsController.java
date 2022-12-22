@@ -1,7 +1,9 @@
 package main.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Id;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,31 +15,45 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import main.model.Product;
 import main.model.ShoppingCartDetails;
+import main.service.ProductService;
 import main.service.ShoppingCartDetailsService;
 
 @Controller
 public class ShoppingCartDetailsController {
-	
+
 	@Autowired
 	private ShoppingCartDetailsService shoppingCartDetailsService;
 	
-	@GetMapping("/add-shopping-cart-details")
-	public String showShoppingCartForm(Model model) {
+	@Autowired
+	private ProductService productService;
+	
+	@GetMapping("/add-shopping-cart-details/{id}")
+	public String showShoppingCartForm(@PathVariable long id, Model model) {
 		model.addAttribute("shoppingCartDetails", new ShoppingCartDetails());
+		Product product = productService.getById(id);
+		model.addAttribute("product", product);
 		return "form-shopping-cart-details";
 	}
 	
+//	@GetMapping("/add-shopping-cart-details/{id}")
+//	public String addProduct(@PathVariable long id, Model model) {
+//		model.addAttribute("shoppingCartDetails", new ShoppingCartDetails());
+//			shoppingCartDetailsService.addProduct(id);
+//			return "form-shopping-cart-details";
+//	}
+
 	@PostMapping("/process-shopping-cart-details-form")
-	public String showShoppingCartDetailsData(@Valid @ModelAttribute ShoppingCartDetails shoppingCartDetails, BindingResult bindingResult) {
+	public String showShoppingCartDetailsData(@Valid @ModelAttribute ShoppingCartDetails shoppingCartDetails,
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "form-shopping-cart-details";
 		}
 		shoppingCartDetailsService.saveOrUpdate(shoppingCartDetails);
-		return "redirect:/shopping-cart";
+		return "redirect:/";
 	}
-	
-	
+
 	@GetMapping("/show-shopping-cart-offer")
 	public String getShoppingCartDetails(Model model) {
 		List<ShoppingCartDetails> shoppingCartDetails = shoppingCartDetailsService.getAll();

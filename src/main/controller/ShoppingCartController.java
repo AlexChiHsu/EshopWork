@@ -19,48 +19,48 @@ import main.service.ShoppingCartService;
 @Controller
 public class ShoppingCartController {
 	
-	@Autowired
-	private ShoppingCartService shoppingCartService;
+//	@Autowired
+//	private ShoppingCartService shoppingCartService;
 	
-	@GetMapping("/addShoppingCart")
-	public String showShoppingCartForm(Model model) {
-		model.addAttribute("shoppingCart", new ShoppingCart());
-		return "formShoppingCart";
-	}
-
-	@PostMapping("/processShoppingCartForm")
-	public String showTourData(@Valid @ModelAttribute ShoppingCart shoppingCart, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			return "formShoppingCart";
-		}
-		shoppingCartService.saveOrUpdate(shoppingCart);
-		return "redirect:/showShoppingCartOffer";
-	}
-
-	@GetMapping("/showShoppingCartOffer")
-	public String getTours(Model model) {
-		List<ShoppingCart> shoppingCarts = shoppingCartService.getAll();
-		model.addAttribute("shoppingCarts", shoppingCarts);
-		return "shoppingCarts";
-	}
-
-	@GetMapping("/deleteShoppingCart/{id}")
-	public String deleteTour(@PathVariable long id) {
-		ShoppingCart shoppingCart = shoppingCartService.getById(id);
-		if (shoppingCart != null) {
-			shoppingCartService.delete(id);
-		}
-		return "redirect:/showShoppingCartOffer";
-	}
-
-	@GetMapping("/editShoppingCart/{id}")
-	public String editTour(@PathVariable long id, Model model) {
-		ShoppingCart shoppingCart = shoppingCartService.getById(id);
-		if (shoppingCart != null) {
-			model.addAttribute("shoppingCart", shoppingCart);
-			return "formShoppingCart";
-		}
-		return "redirect:/showShoppingCartOffer";
-	}
+//	@GetMapping("/addShoppingCart")
+//	public String showShoppingCartForm(Model model) {
+//		model.addAttribute("shoppingCart", new ShoppingCart());
+//		return "formShoppingCart";
+//	}
+//
+//	@PostMapping("/processShoppingCartForm")
+//	public String showTourData(@Valid @ModelAttribute ShoppingCart shoppingCart, BindingResult bindingResult) {
+//		if (bindingResult.hasErrors()) {
+//			return "formShoppingCart";
+//		}
+//		shoppingCartService.saveOrUpdate(shoppingCart);
+//		return "redirect:/showShoppingCartOffer";
+//	}
+//
+//	@GetMapping("/showShoppingCartOffer")
+//	public String getTours(Model model) {
+//		List<ShoppingCart> shoppingCarts = shoppingCartService.getAll();
+//		model.addAttribute("shoppingCarts", shoppingCarts);
+//		return "shoppingCarts";
+//	}
+//
+//	@GetMapping("/deleteShoppingCart/{id}")
+//	public String deleteTour(@PathVariable long id) {
+//		ShoppingCart shoppingCart = shoppingCartService.getById(id);
+//		if (shoppingCart != null) {
+//			shoppingCartService.delete(id);
+//		}
+//		return "redirect:/showShoppingCartOffer";
+//	}
+//
+//	@GetMapping("/editShoppingCart/{id}")
+//	public String editTour(@PathVariable long id, Model model) {
+//		ShoppingCart shoppingCart = shoppingCartService.getById(id);
+//		if (shoppingCart != null) {
+//			model.addAttribute("shoppingCart", shoppingCart);
+//			return "formShoppingCart";
+//		}
+//		return "redirect:/showShoppingCartOffer";
+//	}
 
 }

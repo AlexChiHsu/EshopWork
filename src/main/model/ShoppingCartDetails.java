@@ -15,6 +15,10 @@ import javax.validation.constraints.Min;
 @Entity
 @Table(name = "shopping_cart_details")
 public class ShoppingCartDetails {
+	
+	public ShoppingCartDetails() {
+		setProduct(new Product());
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,5 +63,9 @@ public class ShoppingCartDetails {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 }

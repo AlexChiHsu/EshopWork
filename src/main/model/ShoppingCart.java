@@ -33,9 +33,9 @@ public class ShoppingCart {
 	
 	private BigDecimal amount;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "shopping_cart_details_id")
-	private ShoppingCartDetails shoppingCartDetails;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "shopping_cart_details_id")
+//	private ShoppingCartDetails shoppingCartDetails;
 
 	public long getId() {
 		return id;
@@ -69,13 +69,12 @@ public class ShoppingCart {
 		this.amount = amount;
 	}
 
-	public ShoppingCartDetails getShoppingCartDetails() {
-		return shoppingCartDetails;
-	}
-
-	public void setShoppingCartDetails(ShoppingCartDetails shoppingCartDetails) {
-		this.shoppingCartDetails = shoppingCartDetails;
-	}
-	
+//	public ShoppingCartDetails getShoppingCartDetails() {
+//		return shoppingCartDetails;
+//	}
+//
+//	public void setShoppingCartDetails(ShoppingCartDetails shoppingCartDetails) {
+//		this.shoppingCartDetails = shoppingCartDetails;
+//	}
 	
 }
