@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import main.model.Product;
-import main.model.Sorder;
-import main.model.Tour;
+
 import main.service.ProductService;
-import main.service.SorderService;
+
 
 @Controller
 public class ProductController {
@@ -38,14 +37,14 @@ public class ProductController {
 			return "addProduct";
 		}
 		productService.saveOrUpdate(product);
-		return "redirect:showProduct";
+		return "redirect:/";
 	}
 	
-	@GetMapping("/showProduct")
+	@GetMapping("/")
 	public String getProduct(Model model) {
 		List<Product> products=productService.getAll();
 		model.addAttribute("products", products);
-		return "products";
+		return "home";
 	}
 	
 	@GetMapping("/deleteProduct/{id}")
@@ -54,7 +53,7 @@ public class ProductController {
 		if(product != null) {
 			productService.delete(id);
 		}
-		return "redirect:../showProduct";
+		return "redirect:/showProduct";
 	}
 	
 	@GetMapping("/editProduct/{id}")
@@ -64,7 +63,7 @@ public class ProductController {
 			model.addAttribute("product", product);
 			return "addProduct";
 		}
-		return "redirect:../showProduct";
+		return "redirect:/showProduct";
 	}
 	
 }
