@@ -17,6 +17,11 @@ import main.model.Product;
 
 import main.service.ProductService;
 
+/**
+ * 
+ * @author hsu
+ *
+ */
 
 @Controller
 public class ProductController {
@@ -25,45 +30,45 @@ public class ProductController {
 	private ProductService productService;
 	
 	
-	@GetMapping("/addProduct")
-	public String showForm(Model model) {
+	@GetMapping("/add-product")
+	public String showProductForm(Model model) {
 		model.addAttribute("product", new Product());
-		return "addProduct";
+		return "product-form";
 	}
 	
-	@PostMapping("/submitProduct")
-	public String showProductData(@Valid @ModelAttribute Product product, BindingResult bindingResult) {
+	@PostMapping("/save-product")
+	public String saveProductData(@Valid @ModelAttribute Product product, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			return "addProduct";
+			return "product-form";
 		}
 		productService.saveOrUpdate(product);
-		return "redirect:/";
+		return "redirect:show-products";
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/show-products")
 	public String getProduct(Model model) {
 		List<Product> products=productService.getAll();
 		model.addAttribute("products", products);
-		return "home";
+		return "products";
 	}
 	
-	@GetMapping("/deleteProduct/{id}")
+	@GetMapping("/delete-product/{id}")
 	public String deleteProduct(@PathVariable int id) {
 		Product product = productService.getById(id);
 		if(product != null) {
 			productService.delete(id);
 		}
-		return "redirect:/showProduct";
+		return "redirect:/show-products";
 	}
 	
-	@GetMapping("/editProduct/{id}")
+	@GetMapping("/edit-product/{id}")
 	public String editProduct(@PathVariable int id, Model model) {
 		Product product = productService.getById(id);
 		if(product != null) {
 			model.addAttribute("product", product);
-			return "addProduct";
+			return "product-form";
 		}
-		return "redirect:/showProduct";
+		return "redirect:/show-products";
 	}
 	
 }

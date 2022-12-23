@@ -1,6 +1,5 @@
 package main.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import main.model.ShoppingCartDetails;
@@ -15,6 +14,4 @@ public interface ShoppingCartDetailsService {
 
 	public void delete(long id);
 	
-	public void addProduct(long id);
-
 }

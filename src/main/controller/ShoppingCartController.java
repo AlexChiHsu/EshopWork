@@ -16,51 +16,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 import main.model.ShoppingCart;
 import main.service.ShoppingCartService;
 
+/**
+ * 
+ * @author hsu
+ *
+ */
 @Controller
 public class ShoppingCartController {
 	
-//	@Autowired
-//	private ShoppingCartService shoppingCartService;
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 	
-//	@GetMapping("/addShoppingCart")
-//	public String showShoppingCartForm(Model model) {
-//		model.addAttribute("shoppingCart", new ShoppingCart());
-//		return "formShoppingCart";
-//	}
-//
-//	@PostMapping("/processShoppingCartForm")
-//	public String showTourData(@Valid @ModelAttribute ShoppingCart shoppingCart, BindingResult bindingResult) {
-//		if (bindingResult.hasErrors()) {
-//			return "formShoppingCart";
-//		}
-//		shoppingCartService.saveOrUpdate(shoppingCart);
-//		return "redirect:/showShoppingCartOffer";
-//	}
-//
-//	@GetMapping("/showShoppingCartOffer")
-//	public String getTours(Model model) {
-//		List<ShoppingCart> shoppingCarts = shoppingCartService.getAll();
-//		model.addAttribute("shoppingCarts", shoppingCarts);
-//		return "shoppingCarts";
-//	}
-//
-//	@GetMapping("/deleteShoppingCart/{id}")
-//	public String deleteTour(@PathVariable long id) {
-//		ShoppingCart shoppingCart = shoppingCartService.getById(id);
-//		if (shoppingCart != null) {
-//			shoppingCartService.delete(id);
-//		}
-//		return "redirect:/showShoppingCartOffer";
-//	}
-//
-//	@GetMapping("/editShoppingCart/{id}")
-//	public String editTour(@PathVariable long id, Model model) {
-//		ShoppingCart shoppingCart = shoppingCartService.getById(id);
-//		if (shoppingCart != null) {
-//			model.addAttribute("shoppingCart", shoppingCart);
-//			return "formShoppingCart";
-//		}
-//		return "redirect:/showShoppingCartOffer";
-//	}
+	@GetMapping("/add-shopping-cart")
+	public String showShoppingCartForm(Model model) {
+		model.addAttribute("shoppingCart", new ShoppingCart());
+		return "form-shopping-cart";
+	}
+
+	@PostMapping("/processs-shopping-cart-form")
+	public String showTourData(@Valid @ModelAttribute ShoppingCart shoppingCart, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "form-shopping-cart";
+		}
+		shoppingCartService.saveOrUpdate(shoppingCart);
+		return "redirect:/show-shopping-cart";
+	}
+
+	@GetMapping("/show-shopping-cart")
+	public String getTours(Model model) {
+		List<ShoppingCart> shoppingCarts = shoppingCartService.getAll();
+		model.addAttribute("shoppingCarts", shoppingCarts);
+		return "shopping-cart";
+	}
+
+	@GetMapping("/delete-shopping-cart/{id}")
+	public String deleteTour(@PathVariable long id) {
+		ShoppingCart shoppingCart = shoppingCartService.getById(id);
+		if (shoppingCart != null) {
+			shoppingCartService.delete(id);
+		}
+		return "redirect:/show-shopping-cart";
+	}
+
+	@GetMapping("/edit-shopping-cart/{id}")
+	public String editTour(@PathVariable long id, Model model) {
+		ShoppingCart shoppingCart = shoppingCartService.getById(id);
+		if (shoppingCart != null) {
+			model.addAttribute("shoppingCart", shoppingCart);
+			return "form-shopping-cart";
+		}
+		return "redirect:/show-shopping-cart";
+	}
 
 }

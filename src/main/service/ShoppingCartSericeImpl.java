@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.model.ShoppingCart;
-import main.repository.CustomerRepository;
 import main.repository.ShoppingCartRepository;
 
 @Service
@@ -40,5 +39,16 @@ public class ShoppingCartSericeImpl implements ShoppingCartService {
 	public void delete(long id) {
 		shoppingCartRepository.deleteById(id);
 	}
+	
+	@Override
+	public ShoppingCart getByIdWithShoppingCartDetails(long id) {
+		return shoppingCartRepository.getByIdWithShoppingCartDetails(id);
+	}
+	
+	@Override
+	public ShoppingCart getCustomerNum(long id) {
+		return shoppingCartRepository.getCustomerNum(id);
+	}
+
 
 }

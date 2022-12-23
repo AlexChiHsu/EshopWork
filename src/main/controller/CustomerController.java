@@ -34,10 +34,10 @@ public class CustomerController {
 			return "customer-form";
 		}
 		customerService.saveOrUpdate(customer);
-		return "redirect:/show-customer-offer";
+		return "redirect:/show-customers";
 	}
 
-	@GetMapping("/show-customer-offer")
+	@GetMapping("/show-customers")
 	public String getCustomers(Model model) {
 		List<Customer> customers = customerService.getAll();
 		model.addAttribute("customers", customers);
@@ -50,7 +50,7 @@ public class CustomerController {
 		if (customer != null) {
 			customerService.delete(id);
 		}
-		return "redirect:/show-customer-offer";
+		return "redirect:/show-customers";
 	}
 
 	@GetMapping("/edit-customer/{id}")
@@ -60,7 +60,7 @@ public class CustomerController {
 			model.addAttribute("customer", customer);
 			return "customer-form";
 		}
-		return "redirect:/show-customer-offer";
+		return "redirect:/show-customers";
 	}
 	
 	

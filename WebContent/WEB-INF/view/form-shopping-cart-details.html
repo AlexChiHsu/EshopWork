@@ -22,27 +22,16 @@
 			</div>
 
 			<div class="form-group">
-				<input type="hidden" class="form-control" th:field="*{product.id}">
+				<input type="hidden" class="form-control" th:field="*{shoppingCart.id}">
+			</div>
+			
+			<div class="form-group">
+				<input type="hidden" class="form-control" th:field="*{productNum}">
 			</div>
 
 			<div class="form-group">
-				<input type="hidden" class="form-control"
-					th:field="*{product.prodNum}">
-			</div>
-
-			<div class="form-group">
-				<input type="hidden" class="form-control"
-					th:field="*{product.prodType}">
-			</div>
-
-			<div class="form-group">
-				<input type="hidden" class="form-control"
-					th:field="*{product.prodline}">
-			</div>
-
-			<div class="form-group">
-				<label>商品名稱</label> <input type="text" class="form-control"
-					th:text="${product.prodName}" th:value="${product.prodName}">
+				<label>商品名稱</label> <input disabled type="text" class="form-control"
+				th:field="*{productName}">
 			</div>
 			<div class="form-group">
 				<label class="form-label">商品數量</label> <input type="text"
@@ -50,9 +39,8 @@
 			</div>
 
 			<div class="form-group">
-				<label class="form-label">單價</label> <input type="text"
-					class="form-control" th:text="${product.prodPrice}"
-					th:value="${product.prodPrice}">
+				<label class="form-label">單價</label> <input disabled type="text"
+					class="form-control" th:field="*{productPrice}">
 			</div>
 
 			<div class="form-row">

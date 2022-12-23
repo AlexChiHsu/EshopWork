@@ -2,15 +2,14 @@ package main.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.Future;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,19 +22,15 @@ public class ShoppingCart {
 	private long id;
 	
 	@NotNull(message = "{tour.date.notnull}")
-	@Future(message = "{tour.date.future}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
-	
 	private BigDecimal amount;
 	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "shopping_cart_details_id")
-//	private ShoppingCartDetails shoppingCartDetails;
+	@OneToMany(mappedBy = "shoppingCart",cascade = CascadeType.ALL)
+	private List<ShoppingCartDetails> shoppingCartDetails;
+	
+	private long customer_num;
 
 	public long getId() {
 		return id;
@@ -53,14 +48,6 @@ public class ShoppingCart {
 		this.date = date;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	public BigDecimal getAmount() {
 		return amount;
 	}
@@ -69,12 +56,20 @@ public class ShoppingCart {
 		this.amount = amount;
 	}
 
-//	public ShoppingCartDetails getShoppingCartDetails() {
-//		return shoppingCartDetails;
-//	}
-//
-//	public void setShoppingCartDetails(ShoppingCartDetails shoppingCartDetails) {
-//		this.shoppingCartDetails = shoppingCartDetails;
-//	}
+	public List<ShoppingCartDetails> getShoppingCartDetails() {
+		return shoppingCartDetails;
+	}
+
+	public void setShoppingCartDetails(List<ShoppingCartDetails> shoppingCartDetails) {
+		this.shoppingCartDetails = shoppingCartDetails;
+	}
+
+	public long getCustomer_num() {
+		return customer_num;
+	}
+
+	public void setCustomer_num(long customer_num) {
+		this.customer_num = customer_num;
+	}
 	
 }

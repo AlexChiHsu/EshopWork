@@ -2,51 +2,50 @@ package main.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
-
+/**
+ * 
+ * @author hsu
+ *
+ */
 @Entity
 @Table(name = "shopping_cart_details")
 public class ShoppingCartDetails {
 	
-	public ShoppingCartDetails() {
-		setProduct(new Product());
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+		
+	@ManyToOne
+	@JoinColumn(name = "shoppingCart_id")
+	private ShoppingCart shoppingCart;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@Column(name = "product_name")
+	private String productName;
+	
+	@Column(name = "product_number")
+	private long productNum;
+	
+	@Column(name = "product_price")
+	private BigDecimal productPrice;
 	
 	@Min(value = 1, message = "{ShoppingCartDetails.quantity}")
 	private int quantity;
 	
-	private BigDecimal price;
-
 	public long getId() {
 		return id;
 	}
-
+	
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setTour(Product product) {
-		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -57,15 +56,35 @@ public class ShoppingCartDetails {
 		this.quantity = quantity;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public BigDecimal getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(BigDecimal productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public long getProductNum() {
+		return productNum;
+	}
+
+	public void setProductNum(long productNum) {
+		this.productNum = productNum;
 	}
 }

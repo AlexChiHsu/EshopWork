@@ -1,6 +1,7 @@
 package main.model;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,11 @@ import javax.persistence.Id;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
+/**
+ * 
+ * @author hsu
+ *
+ */
 @Entity
 public class Product {
 

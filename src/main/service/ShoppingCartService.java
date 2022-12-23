@@ -14,7 +14,9 @@ public interface ShoppingCartService {
 
 	public void delete(long id);
 	
-//	public ShoppingCart getByIdWithComments(long id);
+	public ShoppingCart getByIdWithShoppingCartDetails(long id);
+	
+	public ShoppingCart getCustomerNum(long id);
 	
 //	public void addUserToTour(long id, long userId);
 
