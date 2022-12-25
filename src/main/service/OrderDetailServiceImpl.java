@@ -11,11 +11,7 @@ import main.model.Order;
 import main.model.OrderDetail;
 import main.repository.ProductRepository;
 import main.repository.OrderDetailRepository;
-/**
- * 
- * @author hsu
- *
- */
+
 @Service
 @Transactional
 public class OrderDetailServiceImpl implements OrderDetailService {

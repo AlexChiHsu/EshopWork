@@ -8,11 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.model.Order;
 import main.repository.OrderRepository;
-/**
- * 
- * @author hsu
- *
- */
+
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
