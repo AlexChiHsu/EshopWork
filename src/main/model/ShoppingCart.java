@@ -18,7 +18,7 @@ public class ShoppingCart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	public long id;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date date = new Date();
@@ -28,7 +28,7 @@ public class ShoppingCart {
 	@OneToMany(mappedBy = "shoppingCart",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<ShoppingCartDetails> shoppingCartDetails;
 	
-	private long customer_num = 1;
+	private long customer_num;
 
 	public long getId() {
 		return id;

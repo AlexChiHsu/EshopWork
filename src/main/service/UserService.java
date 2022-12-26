@@ -8,4 +8,5 @@ public interface UserService {
 	
 	public boolean loginExists(String login);
 	
+	public User getById(long id);
 }

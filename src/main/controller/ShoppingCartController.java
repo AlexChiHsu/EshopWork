@@ -1,7 +1,5 @@
 package main.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import main.model.ShoppingCart;
 import main.service.ShoppingCartService;
 
-/**
- * 
- * @author hsu
- *
- */
 @Controller
 public class ShoppingCartController {
 	
@@ -29,8 +22,12 @@ public class ShoppingCartController {
 	
 	@GetMapping("/add-shopping-cart")
 	public String showShoppingCartForm(Model model) {
-		model.addAttribute("shoppingCart", new ShoppingCart());
-		return "form-shopping-cart";
+		ShoppingCart shoppingCart = shoppingCartService.getByCustomerNum(1);
+		if (shoppingCart == null) {
+			model.addAttribute("shoppingCart", new ShoppingCart());
+			return "form-shopping-cart";
+		}
+		return "redirect:show-shopping-cart";
 	}
 
 	@PostMapping("/process-shopping-cart-form")
@@ -44,10 +41,8 @@ public class ShoppingCartController {
 
 	@GetMapping("/show-shopping-cart")
 	public String getTours(Model model) {
-		List<ShoppingCart> shoppingCarts = shoppingCartService.getAll();
-		shoppingCarts.get(0);
-		int valueId = shoppingCarts.indexOf(0);
-		ShoppingCart shoppingCart = shoppingCartService.getByIdWithShoppingCartDetails(valueId);
+		shoppingCartService.sumAmount();
+		ShoppingCart shoppingCart = shoppingCartService.getByCustomerNum(1);
 		model.addAttribute("shoppingCart", shoppingCart);
 		return "shopping-cart";
 	}
@@ -70,5 +65,10 @@ public class ShoppingCartController {
 		}
 		return "redirect:/show-shopping-cart";
 	}
-
+	
+	@GetMapping("/payment")
+	public String showPayment() {
+		return "payment";
+	}
+	
 }
